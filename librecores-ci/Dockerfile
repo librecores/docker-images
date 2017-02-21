@@ -39,6 +39,8 @@ ARG YOSYS_VERSION=0.7
 
 # Testing
 ARG COCOTB_VERSION=1.5
+ARG PYTEST_VERSION=3.0.6
+ARG TAPPY_VERSION=2.1
 
 RUN apt-get update
 RUN apt-get install -y python2.7-dev libyaml-dev libyaml-dev
@@ -82,6 +84,11 @@ RUN make install
 # Yosys
 WORKDIR /usr/src/yosys
 RUN git clone http://github.com/cliffordwolf/yosys.git .
+RUN git checkout yosys-${YOSYS_VERSION}
 RUN make config-gcc
 RUN make
 RUN make install
+
+# pytest, nose and tappy
+RUN pip install pytest==${PYTEST_VERSION}
+RUN pip install tap.py==${TAPPY_VERSION}
