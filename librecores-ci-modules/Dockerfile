@@ -30,10 +30,17 @@ LABEL Version     "2017.1"
 USER root
 
 RUN apt-get update
-RUN apt-get install -y python
-RUN apt-get install -y environment-modules
+RUN apt-get install -y python environment-modules wget
+RUN apt-get install -y python3 xdot graphviz
+RUN apt-get install -y git mercurial subversion
+RUN apt-get install -y python-dev python3-dev
 
 VOLUME /tools
 ENV MODULEPATH=/tools/modulefiles
 
 COPY bash.bashrc /etc
+
+WORKDIR /tmp
+RUN wget https://bootstrap.pypa.io/get-pip.py
+RUN python get-pip.py && rm get-pip.py
+RUN pip install pytest tap.py
