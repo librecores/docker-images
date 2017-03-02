@@ -35,6 +35,9 @@ RUN apt-get install -y python3 xdot graphviz
 RUN apt-get install -y git mercurial subversion
 RUN apt-get install -y python-dev python3-dev
 
+# Install Java (required for using the image as Jenkins slave/agent)
+RUN apt-get install -y openjdk-8-jre
+
 # Mapping of Modules
 VOLUME /tools
 ENV MODULEPATH=/tools/modulefiles
