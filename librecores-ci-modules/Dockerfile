@@ -1,6 +1,6 @@
 # The MIT License
 #
-#  Copyright (c) 2016, Oleg Nenashev
+#  Copyright (c) 2016, Oleg Nenashev and LibreCores contributors
 #
 #  Permission is hereby granted, free of charge, to any person obtaining a copy
 #  of this software and associated documentation files (the "Software"), to deal
@@ -35,12 +35,21 @@ RUN apt-get install -y python3 xdot graphviz
 RUN apt-get install -y git mercurial subversion
 RUN apt-get install -y python-dev python3-dev
 
+# Mapping of Modules
 VOLUME /tools
 ENV MODULEPATH=/tools/modulefiles
-
-COPY bash.bashrc /etc
 
 WORKDIR /tmp
 RUN wget https://bootstrap.pypa.io/get-pip.py
 RUN python get-pip.py && rm get-pip.py
 RUN pip install pytest tap.py
+
+# Copy init files
+#TODO: it seems the file is still unused
+COPY bash.bashrc /etc/bash.bashrc
+
+# Make bash the default shell instead of dash
+# chsh is not an option since the user is being created randomly
+RUN rm /bin/sh
+RUN ["/bin/bash", "-c", "ln -s /bin/bash /bin/sh"]
+RUN echo "DSHELL=/bin/bash" >> /etc/adduser.conf
