@@ -47,6 +47,15 @@ RUN wget https://bootstrap.pypa.io/get-pip.py
 RUN python get-pip.py && rm get-pip.py
 RUN pip install pytest tap.py
 
+# Temporary fix: Install cocotb
+# Cocotb doesn't work well with a centralized installation because it
+# compiles files in the installation directory. Hence install it here.
+RUN git clone https://github.com/potentialventures/cocotb.git
+WORKDIR cocotb
+RUN git checkout 5d6aee
+WORKDIR /tmp
+ENV COCOTB=/tmp/cocotb
+
 # Copy init files
 #TODO: it seems the file is still unused
 COPY bash.bashrc /etc/bash.bashrc
