@@ -42,14 +42,10 @@ ARG COCOTB_VERSION=1.5
 ARG PYTEST_VERSION=3.0.6
 ARG TAPPY_VERSION=2.1
 
-RUN apt-get update
-RUN apt-get install -y python2.7-dev libyaml-dev libyaml-dev
-RUN apt-get install -y python-pip
-RUN apt-get install -y python-yaml
-RUN apt-get install -y git
-RUN apt-get install -y libelf-dev autoconf gperf bison flex build-essential
-RUN apt-get install -y clang libreadline-dev gawk tcl-dev libffi-dev mercurial
-RUN apt-get install -y graphviz xdot pkg-config python3
+RUN apt-get update && apt-get install -y \
+    python2.7-dev libyaml-dev libyaml-dev python-pip python-yaml git libelf-dev \
+    autoconf gperf bison flex build-essential clang libreadline-dev gawk tcl-dev \
+    libffi-dev mercurial graphviz xdot pkg-config python3
 
 # FuseSoC
 ENV FUSESOC_VERSION=${FUSESOC_VERSION}
