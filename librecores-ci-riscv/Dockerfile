@@ -21,14 +21,14 @@
 #  THE SOFTWARE.
 
 FROM ubuntu:16.04
-MAINTAINER Oleg Nenashev <o.v.nenashev@gmail.com>
-MAINTAINER Stefan Wallentowitz <stefan@wallentowitz.de>
+LABEL maintainer "Oleg Nenashev <o.v.nenashev@gmail.com>"
+LABEL maintainer "Stefan Wallentowitz <stefan@wallentowitz.de>"
 LABEL Description="This is the default LibreCores CI Image for RISC-V builds" Vendor="Librecores" Version="2017.1"
 
 USER root
 
 # Package Managers
-ARG FUSESOC_VERSION=1.5
+ARG FUSESOC_VERSION=1.9
 
 # Simulation
 ARG ICARUS_VERILOG_VERSION=10_1

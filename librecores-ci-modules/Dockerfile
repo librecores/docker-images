@@ -46,7 +46,7 @@ RUN pip install pytest tap.py
 # Cocotb doesn't work well with a centralized installation because it
 # compiles files in the installation directory. Hence install it here.
 RUN git clone https://github.com/potentialventures/cocotb.git
-WORKDIR cocotb
+WORKDIR /cocotb
 RUN git checkout 5d6aee
 WORKDIR /tmp
 ENV COCOTB=/tmp/cocotb
