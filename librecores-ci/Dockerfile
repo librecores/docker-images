@@ -32,15 +32,15 @@ ARG FUSESOC_VERSION=1.9
 
 # Simulation
 ARG ICARUS_VERILOG_VERSION=10_1
-ARG VERILATOR_VERSION=3.884
+ARG VERILATOR_VERSION=4.008
 
 # Synthesis
-ARG YOSYS_VERSION=0.7
+ARG YOSYS_VERSION=0.8
 
 # Testing
 ARG COCOTB_VERSION=1.5
-ARG PYTEST_VERSION=3.0.6
-ARG TAPPY_VERSION=2.1
+ARG PYTEST_VERSION=4.1.1
+ARG TAPPY_VERSION=2.5
 
 RUN apt-get update && apt-get install -y \
     python2.7-dev libyaml-dev libyaml-dev python-pip python-yaml git libelf-dev \
