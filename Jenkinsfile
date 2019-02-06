@@ -8,7 +8,7 @@ def get_stages(docker_image) {
             }
             stage("Build") {
                 sh 'sleep 10'
-                sh 'echo this is stage A'
+                sh 'echo this is stage Build'
             }
         }
     }
