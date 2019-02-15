@@ -7,8 +7,13 @@ def get_stages(docker_image) {
                 echo 'Running in ${docker_image}'
             }
             stage("Build") {
-                sh 'sleep 10'
                 sh 'echo this is stage Build'
+                container = docker.build('docker_image')
+            }
+            stage("Test") {
+                sh 'echo this is stage Test'
+                sh 'export GOSS_FILES_STRATEGY=cp && /usr/local/bin/dgoss  run --name jenkins-docker-dgoss-test 
+                --rm -ti docker_image'
             }
         }
     }
