@@ -21,26 +21,26 @@
 #  THE SOFTWARE.
 
 FROM ubuntu:16.04
-MAINTAINER Oleg Nenashev <o.v.nenashev@gmail.com>
-MAINTAINER Stefan Wallentowitz <stefan@wallentowitz.de>
+LABEL maintainer "Oleg Nenashev <o.v.nenashev@gmail.com>"
+LABEL maintainer "Stefan Wallentowitz <stefan@wallentowitz.de>"
 LABEL Description="This is the default LibreCores CI Image" Vendor="Librecores" Version="2017.1"
 
 USER root
 
 # Package Managers
-ARG FUSESOC_VERSION=1.5
+ARG FUSESOC_VERSION=1.9
 
 # Simulation
 ARG ICARUS_VERILOG_VERSION=10_1
-ARG VERILATOR_VERSION=3.884
+ARG VERILATOR_VERSION=4.014
 
 # Synthesis
-ARG YOSYS_VERSION=0.7
+ARG YOSYS_VERSION=0.8
 
 # Testing
 ARG COCOTB_VERSION=1.5
-ARG PYTEST_VERSION=3.0.6
-ARG TAPPY_VERSION=2.1
+ARG PYTEST_VERSION=4.5.0
+ARG TAPPY_VERSION=2.5
 
 RUN apt-get update && apt-get install -y \
     python2.7-dev libyaml-dev libyaml-dev python-pip python-yaml git libelf-dev \
