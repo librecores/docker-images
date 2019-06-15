@@ -1,6 +1,8 @@
 LibreCores Docker images
 ========================
 
+[![Gitter](https://badges.gitter.im/librecores/librecores-ci.svg)](https://gitter.im/librecores/librecores-ci?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 This repository contains a set of Docker images with EDA toolsets.
 These images can be used inside LibreCores but also elsewhere as standalone images.
 Images inside this repository largely target the [FuseSoC](https://github.com/olofk/fusesoc) use cases.
