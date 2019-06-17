@@ -20,7 +20,7 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 #  THE SOFTWARE.
 
-FROM librecores/librecores-ci
+FROM librecores/librecores-ci:latest
 LABEL maintainer "Oleg Nenashev <o.v.nenashev@gmail.com>"
 LABEL maintainer "Stefan Wallentowitz <stefan@wallentowitz.de>"
 LABEL Description="This is the default LibreCores CI Image for RISC-V builds" Vendor="Librecores" Version="2017.1"
