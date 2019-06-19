@@ -20,7 +20,7 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 #  THE SOFTWARE.
 
-FROM librecores/librecores-ci:latest
+FROM librecores/librecores-ci:0.2.0
 LABEL maintainer "Oleg Nenashev <o.v.nenashev@gmail.com>"
 LABEL maintainer "Stefan Wallentowitz <stefan@wallentowitz.de>"
 LABEL Description="This is the default LibreCores CI Image for RISC-V builds" Vendor="Librecores" Version="2017.1"
@@ -42,4 +42,3 @@ RUN ./configure --prefix=/opt/riscv --with-arch=rv32i
 RUN make linux
 RUN make newlib
 RUN ln -s /opt/riscv /opt/riscv32i
-
