@@ -20,72 +20,16 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 #  THE SOFTWARE.
 
-FROM ubuntu:16.04
+FROM librecores/librecores-ci:0.2.0
 LABEL maintainer "Oleg Nenashev <o.v.nenashev@gmail.com>"
 LABEL maintainer "Stefan Wallentowitz <stefan@wallentowitz.de>"
 LABEL Description="This is the default LibreCores CI Image for RISC-V builds" Vendor="Librecores" Version="2017.1"
 
 USER root
 
-# Package Managers
-ARG FUSESOC_VERSION=1.9
-
-# Simulation
-ARG ICARUS_VERILOG_VERSION=10_1
-ARG VERILATOR_VERSION=4.014
-
-# Synthesis
-ARG YOSYS_VERSION=0.8
-
-# Testing
-ARG COCOTB_VERSION=1.5
-
 # Compilers
 # No releases/tags available, hence we just pick the fixed version
 ARG RISCV_GNU_TOOLCHAIN_VERSION=ff21e26eb8c4d55dad7ad0b57e7bd8f7784a60e9
-
-RUN apt-get update && apt-get install -y \
-    python2.7-dev libyaml-dev libyaml-dev python-pip python-yaml git \
-    libelf-dev autoconf gperf bison flex build-essential clang \
-    libreadline-dev gawk tcl-dev libffi-dev mercurial graphviz xdot \
-    pkg-config python3
-
-# FuseSoC
-ENV FUSESOC_VERSION=${FUSESOC_VERSION}
-
-WORKDIR /usr/src/fusesoc
-RUN git clone https://github.com/olofk/fusesoc.git .
-RUN git checkout ${FUSESOC_VERSION}
-RUN pip install -e .
-
-# Icarus Verilog
-ENV ICARUS_VERILOG_VERSION=${ICARUS_VERILOG_VERSION}
-
-WORKDIR /usr/src/iverilog
-RUN git clone https://github.com/steveicarus/iverilog.git .
-RUN git checkout v${ICARUS_VERILOG_VERSION}
-RUN sh autoconf.sh
-RUN ./configure
-RUN make
-RUN make install
-
-# Verilator
-ENV VERILATOR_VERSION=${VERILATOR_VERSION}
-
-WORKDIR /usr/src/verilator
-RUN git clone http://git.veripool.org/git/verilator .
-RUN git checkout verilator_`echo "${VERILATOR_VERSION}" | tr '.' '_'`
-RUN autoconf
-RUN ./configure
-RUN make
-RUN make install
-
-# Yosys
-WORKDIR /usr/src/yosys
-RUN git clone http://github.com/cliffordwolf/yosys.git .
-RUN make config-gcc
-RUN make
-RUN make install
 
 # RISC-V GNU Compiler Toolchain
 WORKDIR /usr/src/riscv-gnu-toolchain
@@ -98,4 +42,3 @@ RUN ./configure --prefix=/opt/riscv --with-arch=rv32i
 RUN make linux
 RUN make newlib
 RUN ln -s /opt/riscv /opt/riscv32i
-
