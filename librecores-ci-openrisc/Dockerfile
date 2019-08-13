@@ -1,4 +1,4 @@
-FROM librecores/librecores-ci:0.3.0
+FROM librecores/librecores-ci:0.4.0
 
 LABEL Description="This is the default LibreCores CI Image for openrisc builds" Vendor="Librecores" Version="2019.1"
 

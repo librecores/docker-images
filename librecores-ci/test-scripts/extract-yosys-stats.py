@@ -7,6 +7,7 @@ parser_state = 0
 matches = []
 cells = []
 
+# Printing statistics are extracted from yosys.log
 for line in sys.stdin:
     if parser_state == 0:
         if re.match(r"(?:\d+\.)* Printing statistics\.", line):
@@ -31,12 +32,13 @@ for line in sys.stdin:
 print(matches)
 print(cells)
 
-with open('result.csv','w') as csvFile:
+# Outputs the stats in CSV format
+with open('result.csv', 'w') as csvFile:
     writer = csv.writer(csvFile)
     writer.writerows(matches)
     writer.writerows(cells)
 
-with open('result.csv',newline='') as f:
+with open('result.csv', newline='') as f:
     r = csv.reader(f)
     data = [line for line in r]
 with open('result.csv', 'w', newline='')as f:
@@ -45,18 +47,18 @@ with open('result.csv', 'w', newline='')as f:
     w.writerows(data)
 
 # Code for getting JMeter compatible CSV file for Performance Plugin
-# TODO: result.csv with Key Value has to be made compatible with Perforamce plugin
-
+# TODO: result.csv with Key Value has to be made compatible with Jenkins Perforamce plugin
 in_file = 'result.csv'
 out_file = 'report.csv'
 with open(in_file, 'r') as in_f, open(out_file, 'w', newline='') as out_f:
-    rdr =  csv.DictReader(in_f)
-    fieldnames =  ['timeStamp', 'responseCode','responseMessage','threadName','dataType','success','bytes']
+    rdr = csv.DictReader(in_f)
+    fieldnames = ['timeStamp', 'responseCode', 'responseMessage',
+                  'threadName', 'dataType', 'success', 'bytes']
     fieldnames.extend(rdr.fieldnames)
     wrtr = csv.DictWriter(out_f, fieldnames=fieldnames)
     wrtr.writeheader()
     for row_id, row in enumerate(rdr, start=1):
-        row['timeStamp'] = '{:0>7}'.format(row_id)
+        row['timeStamp'] = '2019-08-14 14:15:25.321'.format(row_id)
         row['responseCode'] = '200'.format(row_id)
         row['responseMessage'] = 'OK'.format(row_id)
         row['threadName'] = 'Thread Group 1-1'.format(row_id)
@@ -66,7 +68,8 @@ with open(in_file, 'r') as in_f, open(out_file, 'w', newline='') as out_f:
         wrtr.writerow(row)
 
 with open('report.csv', 'r') as infile, open('output.csv', 'a') as outfile:
-    fieldnames = ['timeStamp', 'elapsed', 'label', 'responseCode', 'responseMessage', 'threadName', 'dataType', 'success', 'bytes']
+    fieldnames = ['timeStamp', 'elapsed', 'label', 'responseCode',
+                  'responseMessage', 'threadName', 'dataType', 'success', 'bytes']
     writer = csv.DictWriter(outfile, fieldnames=fieldnames)
     writer.writeheader()
     for row in csv.DictReader(infile):
