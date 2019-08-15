@@ -1,4 +1,4 @@
-FROM librecores/librecores-ci:0.4.0
+FROM librecores/librecores-ci:0.3.0
 
 LABEL Description="This is the default LibreCores CI Image for openrisc builds" Vendor="Librecores" Version="2019.1"
 
@@ -23,5 +23,3 @@ RUN git clone https://github.com/openrisc/or1k-tests.git
 WORKDIR /tmp/src/tools/or1k-tests/native
 RUN git checkout ${OR1K_TESTS_VERSION}
 RUN make -j8
-
-COPY yosys-scripts /yosys-scripts
