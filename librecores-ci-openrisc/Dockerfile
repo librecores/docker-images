@@ -24,4 +24,4 @@ WORKDIR /tmp/src/tools/or1k-tests/native
 RUN git checkout ${OR1K_TESTS_VERSION}
 RUN make -j8
 
-COPY test-scripts /test-scripts
+COPY yosys-scripts /yosys-scripts
