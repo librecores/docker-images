@@ -19,7 +19,7 @@ RUN tar xC /tmp/tools -f  or1k-elf-9.0.0-20181112.tar.xz
 ENV PATH="/tmp/tools/or1k-elf/bin:${PATH}"
 
 # Download and compile or1k-tests
-RUN git clone https://github.com/openrisc/or1k-tests.git 
+RUN git clone https://github.com/openrisc/or1k-tests.git
 WORKDIR /tmp/src/tools/or1k-tests/native
 RUN git checkout ${OR1K_TESTS_VERSION}
-RUN make -j8                                          
+RUN make -j8

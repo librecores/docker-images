@@ -85,6 +85,9 @@ RUN make config-gcc
 RUN make
 RUN make install
 
+# test-scipts:extract-yosys-stats.py outputs 'Printing Statistics' for monitoring resource usages by running yosys synthesis.
+COPY test-scripts /test-scripts 
+
 # pytest, nose and tappy
 RUN pip install pytest==${PYTEST_VERSION}
 RUN pip install tap.py==${TAPPY_VERSION}
