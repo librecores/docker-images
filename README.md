@@ -7,7 +7,13 @@ This repository contains a set of Docker images with EDA toolsets.
 These images can be used inside LibreCores but also elsewhere as standalone images.
 Images inside this repository largely target the [FuseSoC](https://github.com/olofk/fusesoc) use cases.
 
-See the directories in the repository for image links and documentation
+## Images
+
+- [librecores-ci](./librecores-ci) -  the base image which includes common EDA tools
+- [librecores-ci-modules](./librecores-ci-modules) - the default LibreCores modules CI Image
+- [librecores-ci-modules-fpga](./librecores-ci-modules-fpga) - the default librecores CI image for FPGA development
+- [librecores-ci-openrisc](./librecores-ci-openrisc) -  the default librecores CI image for OpenRISC development
+- [librecores-ci-riscv](./librecores-ci-riscv) - the default LibreCores CI Image for RISC-V builds
 
 ## License
 
