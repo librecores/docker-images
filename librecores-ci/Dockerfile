@@ -28,7 +28,7 @@ LABEL Description="This is the default LibreCores CI Image" Vendor="Librecores" 
 USER root
 
 # Package Managers
-ARG FUSESOC_VERSION=1.9
+ARG FUSESOC_VERSION=1.9.3
 
 # Simulation
 ARG ICARUS_VERILOG_VERSION=10_2
@@ -48,12 +48,9 @@ RUN apt-get update && apt-get install -y \
     libffi-dev mercurial graphviz xdot pkg-config python3
 
 # FuseSoC
-ENV FUSESOC_VERSION=${FUSESOC_VERSION}
+#ENV FUSESOC_VERSION=${FUSESOC_VERSION}
 
-WORKDIR /usr/src/fusesoc
-RUN git clone https://github.com/olofk/fusesoc.git .
-RUN git checkout ${FUSESOC_VERSION}
-RUN pip install -e .
+RUN pip install fusesoc==${FUSESOC_VERSION}
 
 # Icarus Verilog
 ENV ICARUS_VERILOG_VERSION=${ICARUS_VERILOG_VERSION}
